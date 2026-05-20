@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Deutsche Küche — Lernmaterial</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0f0e0c;
+  --surface:#1a1814;
+  --surface2:#242018;
+  --cream:#f0e8d8;
+  --gold:#d4a843;
+  --gold2:#b8892e;
+  --rust:#c0442a;
+  --muted:#7a7060;
+  --border:rgba(212,168,67,0.15);
+  --green:#4a8c5c;
+  --red:#b83a2e;
+  --blue:#3a6e9e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:3px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.9rem 2.5rem;
+}
+.nav-brand{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gold);font-weight:700;letter-spacing:0.02em}
+.nav-links{display:flex;gap:0.2rem}
+.nav-links a{
+  color:var(--muted);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;padding:0.4rem 0.8rem;border-radius:2px;
+  transition:color 0.2s,background 0.2s;
+}
+.nav-links a:hover{color:var(--gold);background:rgba(212,168,67,0.08)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:6rem 2rem 4rem;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -10%,rgba(212,168,67,0.12) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 60% at 90% 110%,rgba(192,68,42,0.10) 0%,transparent 60%),
+    linear-gradient(180deg,#1a1410 0%,var(--bg) 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:0.04;
+  background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-eyebrow{
+  display:inline-block;font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(212,168,67,0.35);padding:0.4rem 1.2rem;
+  margin-bottom:2rem;border-radius:1px;
+  opacity:0;animation:fadeUp 0.7s 0.2s forwards;
+}
+.hero h1{
+  font-family:'Fraunces',serif;font-size:clamp(3.2rem,8vw,7rem);
+  font-weight:900;line-height:0.95;letter-spacing:-0.03em;
+  opacity:0;animation:fadeUp 0.8s 0.4s forwards;
+}
+.hero h1 .line1{display:block;color:var(--cream)}
+.hero h1 .line2{display:block;color:var(--gold);font-style:italic}
+.hero-desc{
+  margin-top:2rem;font-size:1.05rem;font-weight:300;
+  color:rgba(240,232,216,0.65);max-width:540px;margin-left:auto;margin-right:auto;
+  opacity:0;animation:fadeUp 0.8s 0.6s forwards;
+}
+.hero-stats{
+  margin-top:3.5rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.8s 0.8s forwards;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1}
+.hero-stat .lbl{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem}
+.scroll-down{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  opacity:0;animation:fadeUp 1s 1.2s forwards;
+}
+.scroll-down span{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted)}
+.scroll-bar{width:1px;height:48px;background:linear-gradient(var(--gold),transparent);animation:pulse 2s infinite}
+
+/* ── SECTION COMMONS ── */
+section{padding:5rem 2rem}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-label{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1rem}
+.sec-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;margin-bottom:2.5rem}
+.sec-title em{color:var(--gold);font-style:italic}
+.divider{width:48px;height:2px;background:var(--gold);opacity:0.5;margin:1.5rem 0}
+
+/* ── FOOD CARDS ── */
+#speisen{background:var(--surface)}
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:3px}
+.food-card{
+  background:var(--bg);overflow:hidden;
+  transition:transform 0.35s ease;position:relative;
+}
+.food-card:hover{transform:translateY(-4px);z-index:2}
+.food-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,var(--gold),var(--rust));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;
+}
+.food-card:hover::after{transform:scaleX(1)}
+.card-img{position:relative;height:200px;overflow:hidden;background:#111}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.food-card:hover .card-img img{transform:scale(1.07)}
+.img-badge{
+  position:absolute;top:0.7rem;left:0.7rem;
+  background:rgba(15,14,12,0.85);border:1px solid var(--border);
+  font-size:0.62rem;letter-spacing:0.1em;color:var(--gold);
+  padding:0.25rem 0.6rem;border-radius:1px;text-transform:uppercase;
+}
+.img-src{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.75));
+  font-size:0.6rem;color:rgba(240,232,216,0.5);
+  padding:1.2rem 0.7rem 0.5rem;
+}
+.img-src a{color:var(--gold);text-decoration:none}
+.img-src a:hover{text-decoration:underline}
+.card-body{padding:1.4rem 1.6rem 1.8rem}
+.card-num{font-size:0.65rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:0.4rem}
+.card-body h3{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;margin-bottom:0.2rem}
+.card-herkunft{font-size:0.7rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:0.8rem}
+.card-body p{font-size:0.9rem;color:rgba(240,232,216,0.65);line-height:1.75;font-weight:300}
+.card-chip{
+  display:inline-block;margin-top:0.9rem;padding:0.25rem 0.75rem;
+  border:1px solid rgba(212,168,67,0.3);color:var(--gold);
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;border-radius:1px;
+}
+
+/* ── FUN FACTS ── */
+#funfacts{background:var(--bg)}
+.facts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.fact-card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:1.8rem;position:relative;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.fact-card:hover{border-color:rgba(212,168,67,0.5);transform:translateY(-3px)}
+.fact-card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:linear-gradient(var(--gold),var(--rust));
+}
+.fact-icon{font-size:2rem;margin-bottom:0.8rem;display:block}
+.fact-card h4{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--gold);margin-bottom:0.6rem}
+.fact-card p{font-size:0.88rem;color:rgba(240,232,216,0.6);line-height:1.7;font-weight:300}
+.fact-highlight{
+  display:inline-block;margin-top:0.8rem;
+  font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--gold);
+}
+
+/* ── BIERKULTUR ── */
+#bier{background:var(--surface)}
+.bier-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
+.bier-img-wrap{position:relative}
+.bier-img-wrap img{width:100%;height:280px;object-fit:cover;display:block}
+.bier-caption{font-size:0.65rem;color:var(--muted);padding:0.5rem 0;text-align:center}
+.bier-caption a{color:var(--gold);text-decoration:none}
+.fact-table{margin-top:1.5rem;border:1px solid var(--border)}
+.fact-row-t{display:flex;justify-content:space-between;padding:0.65rem 1rem;border-bottom:1px solid var(--border);font-size:0.85rem}
+.fact-row-t:last-child{border-bottom:none}
+.fact-row-t .k{color:var(--muted);font-size:0.78rem}
+.fact-row-t .v{color:var(--cream);font-weight:500}
+
+/* ── ÜBUNGEN (QUIZ) ── */
+#uebungen{background:var(--bg)}
+.quiz-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.quiz-tab{
+  padding:0.5rem 1.2rem;border:1px solid var(--border);background:transparent;
+  color:var(--muted);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;border-radius:1px;transition:all 0.2s;font-family:'DM Sans',sans-serif;
+}
+.quiz-tab.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:500}
+.quiz-panel{display:none}
+.quiz-panel.active{display:block}
+
+/* MC Quiz */
+.mc-question{background:var(--surface);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.2rem;border-radius:2px}
+.mc-question .q-num{font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.5rem}
+.mc-question .q-text{font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:1rem}
+.mc-options{display:grid;gap:0.5rem}
+.mc-opt{
+  display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;
+  border:1px solid var(--border);cursor:pointer;border-radius:1px;
+  background:transparent;color:rgba(240,232,216,0.75);font-size:0.88rem;
+  transition:all 0.2s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;
+}
+.mc-opt:hover:not(:disabled){border-color:rgba(212,168,67,0.5);color:var(--cream);background:rgba(212,168,67,0.05)}
+.mc-opt.correct{border-color:var(--green)!important;background:rgba(74,140,92,0.15)!important;color:#6dd68a!important}
+.mc-opt.wrong{border-color:var(--red)!important;background:rgba(184,58,46,0.15)!important;color:#e07070!important}
+.mc-opt:disabled{cursor:default}
+.opt-letter{
+  width:22px;height:22px;border-radius:50%;border:1px solid currentColor;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:600;flex-shrink:0;
+}
+.q-feedback{margin-top:0.75rem;font-size:0.82rem;padding:0.6rem 0.9rem;border-radius:1px;display:none}
+.q-feedback.show{display:block}
+.q-feedback.correct{background:rgba(74,140,92,0.15);color:#6dd68a;border-left:3px solid var(--green)}
+.q-feedback.wrong{background:rgba(184,58,46,0.15);color:#e07070;border-left:3px solid var(--red)}
+
+/* Fill blank */
+.fill-q{background:var(--surface);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.2rem;border-radius:2px}
+.fill-q .q-num{font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.5rem}
+.fill-q .q-text{font-size:1rem;color:var(--cream);margin-bottom:1rem;line-height:1.7}
+.fill-input-wrap{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+.fill-input{
+  background:rgba(240,232,216,0.05);border:1px solid var(--border);
+  color:var(--cream);font-size:0.9rem;padding:0.5rem 0.9rem;border-radius:1px;
+  font-family:'DM Sans',sans-serif;min-width:160px;outline:none;
+  transition:border-color 0.2s;
+}
+.fill-input:focus{border-color:var(--gold)}
+.fill-input.correct{border-color:var(--green);background:rgba(74,140,92,0.12);color:#6dd68a}
+.fill-input.wrong{border-color:var(--red);background:rgba(184,58,46,0.12);color:#e07070}
+.btn-check{
+  padding:0.5rem 1.2rem;background:var(--gold);color:var(--bg);
+  border:none;cursor:pointer;font-size:0.8rem;letter-spacing:0.1em;
+  text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;
+  border-radius:1px;transition:background 0.2s;
+}
+.btn-check:hover{background:var(--gold2)}
+
+/* Match */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:700px}
+.match-col h4{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem}
+.match-item{
+  padding:0.65rem 1rem;border:1px solid var(--border);
+  cursor:pointer;border-radius:1px;font-size:0.88rem;
+  background:var(--surface);transition:all 0.2s;user-select:none;
+  margin-bottom:0.5rem;
+}
+.match-item:hover{border-color:rgba(212,168,67,0.5);background:rgba(212,168,67,0.05)}
+.match-item.selected{border-color:var(--gold);background:rgba(212,168,67,0.12);color:var(--gold)}
+.match-item.matched-ok{border-color:var(--green);background:rgba(74,140,92,0.12);color:#6dd68a;cursor:default}
+.match-item.matched-err{border-color:var(--red);background:rgba(184,58,46,0.12);color:#e07070}
+.match-feedback{margin-top:1rem;font-size:0.85rem;color:var(--muted)}
+
+/* Score */
+.quiz-score{
+  margin-top:2rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.score-num{font-family:'Fraunces',serif;font-size:2rem;color:var(--gold);font-weight:700}
+.btn-reset{
+  padding:0.5rem 1.2rem;background:transparent;color:var(--gold);
+  border:1px solid rgba(212,168,67,0.4);cursor:pointer;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;font-family:'DM Sans',sans-serif;
+  border-radius:1px;transition:all 0.2s;
+}
+.btn-reset:hover{background:rgba(212,168,67,0.1)}
+
+/* ── GLOSSAR ── */
+#glossar{background:var(--surface)}
+.glossar-search-wrap{position:relative;max-width:440px;margin-bottom:2rem}
+.glossar-search{
+  width:100%;background:rgba(240,232,216,0.05);border:1px solid var(--border);
+  color:var(--cream);font-size:0.92rem;padding:0.75rem 1rem 0.75rem 2.6rem;
+  border-radius:1px;outline:none;font-family:'DM Sans',sans-serif;
+  transition:border-color 0.2s;
+}
+.glossar-search:focus{border-color:rgba(212,168,67,0.5)}
+.glossar-search::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.9rem;pointer-events:none}
+.glossar-filter{display:flex;gap:0.4rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.gfilter{
+  padding:0.3rem 0.85rem;border:1px solid var(--border);background:transparent;
+  color:var(--muted);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;border-radius:1px;transition:all 0.2s;font-family:'DM Sans',sans-serif;
+}
+.gfilter.active{background:rgba(212,168,67,0.15);border-color:rgba(212,168,67,0.4);color:var(--gold)}
+.glossar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.8rem}
+.gloss-card{
+  background:var(--bg);border:1px solid var(--border);padding:1rem 1.2rem;
+  border-radius:1px;transition:border-color 0.2s,transform 0.2s;
+}
+.gloss-card:hover{border-color:rgba(212,168,67,0.4);transform:translateY(-2px)}
+.gloss-card.hidden{display:none}
+.gloss-de{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gold);font-weight:700}
+.gloss-cat{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin:0.2rem 0 0.5rem}
+.gloss-id{font-size:0.88rem;color:rgba(240,232,216,0.65);font-weight:300}
+.gloss-example{font-size:0.78rem;color:rgba(240,232,216,0.4);font-style:italic;margin-top:0.3rem;border-top:1px solid var(--border);padding-top:0.4rem}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:3rem 2rem;text-align:center;
+}
+footer .flag{font-size:1.8rem;display:block;margin-bottom:0.8rem}
+footer p{font-size:0.82rem;color:var(--muted)}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  nav{padding:0.8rem 1.2rem}
+  .nav-links{display:none}
+  .bier-inner{grid-template-columns:1fr;gap:2.5rem}
+  .match-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">🇩🇪 Deutsche Küche</div>
+  <div class="nav-links">
+    <a href="#speisen">Speisen</a>
+    <a href="#funfacts">Fun Facts</a>
+    <a href="#bier">Bierkultur</a>
+    <a href="#uebungen">Übungen</a>
+    <a href="#glossar">Glossar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Lernmaterial · Deutsche Küche</span>
+    <h1>
+      <span class="line1">Deutsche</span>
+      <span class="line2">Küche</span>
+    </h1>
+    <p class="hero-desc">Entdecken Sie die traditionellen Speisen Deutschlands — mit Bildern, Fun Facts, interaktiven Übungen und einem vollständigen Glossar auf Deutsch.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">10</div><div class="lbl">Speisen</div></div>
+      <div class="hero-stat"><div class="num">12</div><div class="lbl">Fun Facts</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">Übungstypen</div></div>
+      <div class="hero-stat"><div class="num">40+</div><div class="lbl">Glossarwörter</div></div>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <span>Nach unten scrollen</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ═══ SPEISEN ═══ -->
+<section id="speisen">
+<div class="sec-inner">
+  <div class="reveal">
+    <p class="sec-label">Traditionelle Speisen</p>
+    <h2 class="sec-title">Die <em>bekanntesten</em> deutschen Gerichte</h2>
+  </div>
+  <div class="food-grid">
+
+    <!-- 1 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Grilled_Bratwurst.jpg/640px-Grilled_Bratwurst.jpg" alt="Bratwurst" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">01</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Grilled_Bratwurst.jpg" target="_blank">Wikimedia Commons</a> · Public Domain</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">01 · Wurst</p>
+        <h3>Die Bratwurst</h3>
+        <p class="card-herkunft">📍 Nürnberg, Bayern</p>
+        <p>Die Bratwurst ist eine gebratene oder gegrillte Wurst aus Schweine- oder Rindfleisch, gewürzt mit Majoran, Ingwer und Muskat. Sie wird mit Senf und einem Brötchen serviert. In Deutschland gibt es über <strong>1.500 Wurstarten</strong> — die Bratwurst ist die berühmteste.</p>
+        <span class="card-chip">Fleisch &amp; Wurst</span>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Wiener_Schnitzel_02.jpg/640px-Wiener_Schnitzel_02.jpg" alt="Schnitzel" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">02</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Wiener_Schnitzel_02.jpg" target="_blank">Wikimedia Commons</a> · Public Domain</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">02 · Fleischgericht</p>
+        <h3>Das Schnitzel</h3>
+        <p class="card-herkunft">📍 Österreich &amp; Süddeutschland</p>
+        <p>Das Schnitzel ist ein dünn geklopftes Fleischstück, in Paniermehl gewendet und knusprig gebraten. Das <em>Wiener Schnitzel</em> verwendet Kalbfleisch, das <em>Jägerschnitzel</em> wird mit Pilzsoße serviert. Beliebt in ganz Deutschland mit Kartoffeln oder Salat.</p>
+        <span class="card-chip">Gebratenes Fleisch</span>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Kl%C3%B6%C3%9Fe_%28Kartoffelkl%C3%B6%C3%9Fe%29.jpg/640px-Kl%C3%B6%C3%9Fe_%28Kartoffelkl%C3%B6%C3%9Fe%29.jpg" alt="Kartoffelklöße" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">03</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Kl%C3%B6%C3%9Fe_(Kartoffelkl%C3%B6%C3%9Fe).jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">03 · Beilage</p>
+        <h3>Die Kartoffelklöße</h3>
+        <p class="card-herkunft">📍 Thüringen &amp; Bayern</p>
+        <p>Kartoffelklöße sind große, runde Knödel aus rohen und gekochten Kartoffeln. Sie werden als Beilage zu Braten oder Wildgerichten serviert und mit Soße übergossen. In Deutschland werden Kartoffeln <em>„die Krone der Küche"</em> genannt.</p>
+        <span class="card-chip">Beilage</span>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sauerbraten_mit_Sp%C3%A4tzle_und_Salat.jpg/640px-Sauerbraten_mit_Sp%C3%A4tzle_und_Salat.jpg" alt="Sauerbraten" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">04</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Sauerbraten_mit_Sp%C3%A4tzle_und_Salat.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">04 · Nationalgericht</p>
+        <h3>Der Sauerbraten</h3>
+        <p class="card-herkunft">📍 Rheinland</p>
+        <p>Der Sauerbraten ist ein Rinderschmorbraten, der <strong>3–5 Tage</strong> in Essig, Rotwein und Gewürzen mariniert wird. Das Fleisch wird langsam geschmort, bis es zart ist. Er gilt als eines der deutschen Nationalgerichte und hat eine leicht süß-saure Soße.</p>
+        <span class="card-chip">Schmorbraten</span>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Currywurst_%28Berlin%2C_Germany%29.jpg/640px-Currywurst_%28Berlin%2C_Germany%29.jpg" alt="Currywurst" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">05</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Currywurst_(Berlin,_Germany).jpg" target="_blank">Wikimedia Commons</a> · CC BY 2.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">05 · Streetfood</p>
+        <h3>Die Currywurst</h3>
+        <p class="card-herkunft">📍 Berlin</p>
+        <p>Die Currywurst ist gebratene Wurst in Scheiben, übergossen mit Curryketchup. Sie wurde <strong>1949</strong> von Herta Heuwer in Berlin erfunden. Heute werden über <strong>800 Millionen Portionen</strong> pro Jahr gegessen. In Berlin gibt es sogar ein Currywurst-Museum!</p>
+        <span class="card-chip">Streetfood</span>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sauerkraut-jar.jpg/640px-Sauerkraut-jar.jpg" alt="Sauerkraut" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">06</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Sauerkraut-jar.jpg" target="_blank">Wikimedia Commons</a> · Public Domain</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">06 · Fermentiert</p>
+        <h3>Das Sauerkraut</h3>
+        <p class="card-herkunft">📍 Ganz Deutschland</p>
+        <p>Sauerkraut ist fermentierter Kohl mit Salz. Es ist reich an <em>Probiotika</em> und Vitamin C. Früher war es für Seeleute auf langen Reisen sehr wichtig, um Skorbut zu vermeiden. Es wird warm oder kalt als Beilage zu Fleischgerichten serviert.</p>
+        <span class="card-chip">Fermentation</span>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Pretzel_in_Bavaria.jpg/640px-Pretzel_in_Bavaria.jpg" alt="Brezel" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">07</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Pretzel_in_Bavaria.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">07 · Gebäck</p>
+        <h3>Die Brezel</h3>
+        <p class="card-herkunft">📍 Bayern &amp; Baden-Württemberg</p>
+        <p>Die Brezel ist ein Laugengebäck in Knotenform. Der Teig wird in <em>Natronlauge</em> getaucht, bevor er gebacken wird — das ergibt die glänzende, braune Kruste und das weiche Innere. Mit grobem Salz bestreut, ist sie der klassische Begleiter zum Bier.</p>
+        <span class="card-chip">Brot &amp; Gebäck</span>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Schwarzwaelder_Kirschtorte_3.jpg/640px-Schwarzwaelder_Kirschtorte_3.jpg" alt="Schwarzwälder Kirschtorte" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">08</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Schwarzwaelder_Kirschtorte_3.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">08 · Dessert</p>
+        <h3>Die Schwarzwälder Kirschtorte</h3>
+        <p class="card-herkunft">📍 Schwarzwald, Baden-Württemberg</p>
+        <p>Diese Torte besteht aus Schokoladenböden, Schlagsahne und Kirschen, getränkt mit <em>Kirschwasser</em>. Per Gesetz darf sie in Deutschland nur dann „Schwarzwälder Kirschtorte" heißen, wenn echter Kirschbrand verwendet wird. Sie ist weltweit bekannt.</p>
+        <span class="card-chip">Dessert &amp; Kuchen</span>
+      </div>
+    </article>
+
+    <!-- 9 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Schweinshaxe_01.jpg/640px-Schweinshaxe_01.jpg" alt="Schweinshaxe" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">09</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Schweinshaxe_01.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">09 · Bayerisch</p>
+        <h3>Die Schweinshaxe</h3>
+        <p class="card-herkunft">📍 Bayern (München)</p>
+        <p>Die Schweinshaxe ist ein Schweinebein, das <strong>ca. 3 Stunden</strong> bei niedriger Temperatur gebraten wird. Die Kruste wird am Ende bei hoher Hitze knusprig gebacken. Das Fleisch innen bleibt saftig und zart. Ein Klassiker beim Oktoberfest in München.</p>
+        <span class="card-chip">Braten</span>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="food-card reveal">
+      <div class="card-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Sp%C3%A4tzle_02.jpg/640px-Sp%C3%A4tzle_02.jpg" alt="Spätzle" loading="lazy" onerror="this.style.display='none'">
+        <span class="img-badge">10</span>
+        <div class="img-src">Foto: <a href="https://commons.wikimedia.org/wiki/File:Sp%C3%A4tzle_02.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">10 · Nudeln</p>
+        <h3>Die Spätzle</h3>
+        <p class="card-herkunft">📍 Schwaben &amp; Baden-Württemberg</p>
+        <p>Spätzle sind hausgemachte Eiernudeln in unregelmäßiger Form. Als <em>Käsespätzle</em> mit geschmolzenem Käse und gebratenen Zwiebeln überbacken, sind sie eine schwäbische Spezialität. Sie werden auch als Beilage zu Sauerbraten oder Schnitzel serviert.</p>
+        <span class="card-chip">Nudeln &amp; Teig</span>
+      </div>
+    </article>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══ FUN FACTS ═══ -->
+<section id="funfacts">
+<div class="sec-inner">
+  <div class="reveal">
+    <p class="sec-label">Wussten Sie das?</p>
+    <h2 class="sec-title">Fun Facts über die deutsche <em>Esskultur</em></h2>
+  </div>
+  <div class="facts-grid">
+    <div class="fact-card reveal">
+      <span class="fact-icon">🌭</span>
+      <h4>1.500+ Wurstarten</h4>
+      <p>Deutschland ist das Land der Würste. Es gibt über <strong>1.500 registrierte Wurstarten</strong> — von der Bratwurst bis zur Leberwurst. Pro Person werden jährlich ca. 30 kg Fleischwaren gegessen.</p>
+      <span class="fact-highlight">1.500+</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🍺</span>
+      <h4>Das Reinheitsgebot (1516)</h4>
+      <p>Das deutsche Reinheitsgebot von 1516 ist die älteste noch gültige Lebensmittelverordnung der Welt. Es legt fest: Bier darf nur aus <strong>Wasser, Malz, Hopfen</strong> — und heute auch Hefe — gebraut werden.</p>
+      <span class="fact-highlight">508 Jahre alt</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🍞</span>
+      <h4>300+ Brotsorten</h4>
+      <p>Deutschland hat eine der vielfältigsten Brottraditionen der Welt. Mit über <strong>300 Brotsorten</strong> und 1.200 Brötchensorten ist das deutsche Brotbacken seit 2014 als <em>immaterielles UNESCO-Kulturerbe</em> anerkannt.</p>
+      <span class="fact-highlight">300+ Sorten</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🎪</span>
+      <h4>Das Oktoberfest</h4>
+      <p>Das Oktoberfest in München ist das größte Volksfest der Welt. Jedes Jahr kommen über <strong>6 Millionen Besucher</strong> aus aller Welt. Es dauert 16–18 Tage und findet auf der Theresienwiese statt. 2024 wurden ca. <strong>7 Millionen Maß Bier</strong> getrunken.</p>
+      <span class="fact-highlight">6 Mio. Gäste</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🥔</span>
+      <h4>Die Kartoffel — Deutschlands Lieblingsgemüse</h4>
+      <p>Friedrich der Große förderte den Kartoffelanbau im 18. Jahrhundert. Heute essen Deutsche durchschnittlich <strong>60 kg Kartoffeln</strong> pro Jahr — als Bratkartoffeln, Knödel, Pommes, Salat oder Püree.</p>
+      <span class="fact-highlight">60 kg/Jahr</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🎄</span>
+      <h4>Weihnachtliche Spezialitäten</h4>
+      <p>Deutschland hat eine reiche Tradition an Weihnachtsspeisen: <em>Lebkuchen</em> (Ingwerplätzchen), <em>Stollen</em> (Früchtebrot), und <em>Glühwein</em>. Der Nürnberger Christkindlesmarkt ist einer der bekanntesten Weihnachtsmärkte der Welt.</p>
+      <span class="fact-highlight">seit 1628</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🏭</span>
+      <h4>Currywurst-Museum Berlin</h4>
+      <p>Die Currywurst ist so beliebt, dass es ihr eigenes Museum in Berlin gab (2009–2018). Die Erfinderin <strong>Herta Heuwer</strong> mischte 1949 erstmals Ketchup mit Currypulver. Das Rezept ließ sie sich patentieren!</p>
+      <span class="fact-highlight">1949 erfunden</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🧀</span>
+      <h4>Käse aus Deutschland</h4>
+      <p>Deutschland produziert über <strong>150 Käsesorten</strong>. Bekannte Varianten sind <em>Tilsiter, Allgäuer Emmentaler, Limburger</em> und <em>Obatzda</em> (bayerische Käsecreme). Der Allgäuer Emmentaler hat EU-Herkunftsschutz.</p>
+      <span class="fact-highlight">150+ Sorten</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🌿</span>
+      <h4>Kräuter in der deutschen Küche</h4>
+      <p>Typische Kräuter und Gewürze in der deutschen Küche: <em>Majoran, Kümmel, Liebstöckel, Petersilie</em> und <em>Schnittlauch</em>. Der Kümmel wird besonders häufig in Brot, Sauerkraut und Fleischgerichten verwendet.</p>
+      <span class="fact-highlight">Majoran #1</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🕐</span>
+      <h4>Das Abendbrot</h4>
+      <p>Eine deutsche Besonderheit: <em>Das Abendbrot</em> — das Abendessen wird oft kalt gegessen, mit Brot, Aufschnitt, Käse und Gurken. Es heißt „Brot", weil Brot die Hauptrolle spielt. Eine echte deutsche Tradition!</p>
+      <span class="fact-highlight">Kalt essen</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🍋</span>
+      <h4>Apfelstrudel vs. Schwarzwälder Torte</h4>
+      <p>Viele glauben, der Apfelstrudel kommt aus Deutschland — er stammt aber aus Österreich! Die Schwarzwälder Kirschtorte hingegen ist wirklich deutsch. Der Name <em>Schwarzwälder Kirschtorte</em> ist gesetzlich geschützt.</p>
+      <span class="fact-highlight">Gesetzlich geschützt</span>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🚂</span>
+      <h4>Regionale Unterschiede</h4>
+      <p>Deutschland hat 16 Bundesländer mit sehr unterschiedlichen Küchen. Im Süden (Bayern, Schwaben) isst man herzhaft und deftig. Im Norden (Hamburg, Nordsee) isst man mehr Fisch. Berlin hat eine eigene Streetfood-Kultur.</p>
+      <span class="fact-highlight">16 Bundesländer</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ BIERKULTUR ═══ -->
+<section id="bier">
+<div class="bier-inner">
+  <div class="reveal">
+    <p class="sec-label">Deutsche Bierkultur</p>
+    <h2 class="sec-title">Das <em>Reinheitsgebot</em></h2>
+    <div class="divider"></div>
+    <p style="color:rgba(240,232,216,0.65);font-weight:300;line-height:1.85;margin-bottom:1rem">Seit 1516 gilt in Deutschland das <strong style="color:var(--gold)">Reinheitsgebot</strong> — die älteste Lebensmittelverordnung der Welt. Herzog Wilhelm IV. von Bayern bestimmte, dass Bier nur aus <em>Wasser, Gerste und Hopfen</em> gebraut werden darf.</p>
+    <p style="color:rgba(240,232,216,0.65);font-weight:300;line-height:1.85;margin-bottom:1rem">Bier und Essen sind in Deutschland untrennbar verbunden. Jede Biersorte hat ihre eigene Speisenbegleitung: <em>Weizenbier</em> passt zu Weißwurst und Brezel, <em>Dunkles Bier</em> zu Schweinebraten.</p>
+    <p style="color:rgba(240,232,216,0.65);font-weight:300;line-height:1.85">Deutschland hat heute über <strong style="color:var(--gold)">1.300 Brauereien</strong>, die mehr als <strong style="color:var(--gold)">5.000 Biersorten</strong> produzieren — ein stolzes Erbe.</p>
+  </div>
+  <div class="reveal">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Oktoberfest_Sch%C3%A4fflertanz_2010.jpg/640px-Oktoberfest_Sch%C3%A4fflertanz_2010.jpg" alt="Oktoberfest München" style="width:100%;height:220px;object-fit:cover;display:block" onerror="this.style.display='none'">
+    <p class="bier-caption">Oktoberfest München · <a href="https://commons.wikimedia.org/wiki/File:Oktoberfest_Sch%C3%A4fflertanz_2010.jpg" target="_blank">Wikimedia Commons</a> · CC BY-SA 3.0</p>
+    <div class="fact-table">
+      <div class="fact-row-t"><span class="k">Reinheitsgebot seit</span><span class="v">1516</span></div>
+      <div class="fact-row-t"><span class="k">Anzahl Brauereien</span><span class="v">1.300+</span></div>
+      <div class="fact-row-t"><span class="k">Biersorten</span><span class="v">5.000+</span></div>
+      <div class="fact-row-t"><span class="k">Älteste Brauerei</span><span class="v">Weihenstephan (1040)</span></div>
+      <div class="fact-row-t"><span class="k">Oktoberfest Besucher/Jahr</span><span class="v">~6 Millionen</span></div>
+      <div class="fact-row-t"><span class="k">Bierkonsum/Jahr</span><span class="v">~7,5 Mrd. Liter</span></div>
+      <div class="fact-row-t"><span class="k">Typische Biersorten</span><span class="v">Lager, Weizen, Dunkel, Bock</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ ÜBUNGEN ═══ -->
+<section id="uebungen">
+<div class="sec-inner">
+  <div class="reveal">
+    <p class="sec-label">Übungen · Latihan</p>
+    <h2 class="sec-title">Testen Sie Ihr <em>Wissen</em>!</h2>
+  </div>
+  <div class="quiz-tabs">
+    <button class="quiz-tab active" onclick="showPanel('mc')">Multiple Choice</button>
+    <button class="quiz-tab" onclick="showPanel('fill')">Lückentext</button>
+    <button class="quiz-tab" onclick="showPanel('match')">Zuordnung</button>
+  </div>
+
+  <!-- PANEL 1: Multiple Choice -->
+  <div class="quiz-panel active" id="panel-mc">
+
+    <div class="mc-question">
+      <p class="q-num">Frage 01 / 06</p>
+      <p class="q-text">Wie heißt das berühmte deutsche Gesetz von 1516, das die Zutaten für Bier regelt?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> Das Biergesetz</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">B</span> Das Reinheitsgebot</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">C</span> Die Bierordnung</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Das Braugesetz</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Das Reinheitsgebot von 1516 ist die älteste Lebensmittelverordnung der Welt.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. Die richtige Antwort ist: <strong>Das Reinheitsgebot</strong> (1516).</div>
+    </div>
+
+    <div class="mc-question">
+      <p class="q-num">Frage 02 / 06</p>
+      <p class="q-text">Welches Gericht wurde 1949 von Herta Heuwer in Berlin erfunden?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> Die Bratwurst</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">B</span> Das Schnitzel</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">C</span> Die Currywurst</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Das Sauerkraut</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Herta Heuwer erfand die Currywurst 1949 in Berlin und ließ das Rezept patentieren.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. Die richtige Antwort ist: <strong>Die Currywurst</strong> — erfunden 1949 in Berlin.</div>
+    </div>
+
+    <div class="mc-question">
+      <p class="q-num">Frage 03 / 06</p>
+      <p class="q-text">Aus welcher Region kommt die Schwarzwälder Kirschtorte?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> Bayern</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">B</span> Thüringen</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">C</span> Baden-Württemberg (Schwarzwald)</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Berlin</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Die Torte stammt aus dem Schwarzwald in Baden-Württemberg.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. Die Schwarzwälder Kirschtorte kommt aus dem <strong>Schwarzwald, Baden-Württemberg</strong>.</div>
+    </div>
+
+    <div class="mc-question">
+      <p class="q-num">Frage 04 / 06</p>
+      <p class="q-text">Was bedeutet „Abendbrot" in der deutschen Esskultur?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> Ein warmes Abendessen mit Suppe</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">B</span> Ein kaltes Abendessen mit Brot, Käse und Aufschnitt</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">C</span> Ein Frühstück am Abend</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Ein Mittagessen mit Brot</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Das Abendbrot ist eine typisch deutsche Mahlzeit — kalt, mit Brot, Käse und Wurst.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. „Abendbrot" ist eine <strong>kalte Abendmahlzeit</strong> mit Brot, Käse und Aufschnitt.</div>
+    </div>
+
+    <div class="mc-question">
+      <p class="q-num">Frage 05 / 06</p>
+      <p class="q-text">Wie viele Tage wurde Sauerbraten traditionell mariniert?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> 1 Tag</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">B</span> 24 Stunden</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">C</span> 3–5 Tage</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Eine Woche</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Sauerbraten wird 3 bis 5 Tage in Essig, Wein und Gewürzen mariniert.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. Sauerbraten wird <strong>3–5 Tage</strong> mariniert, damit das Fleisch zart und würzig wird.</div>
+    </div>
+
+    <div class="mc-question">
+      <p class="q-num">Frage 06 / 06</p>
+      <p class="q-text">Was ist das Besondere an der Brezel (Laugenbrezel)?</p>
+      <div class="mc-options">
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">A</span> Sie wird in Bier getaucht</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">B</span> Sie wird mit Zucker bestreut</button>
+        <button class="mc-opt" onclick="checkMC(this,'correct')"><span class="opt-letter">C</span> Der Teig wird vor dem Backen in Natronlauge getaucht</button>
+        <button class="mc-opt" onclick="checkMC(this,'wrong')"><span class="opt-letter">D</span> Sie wird im Dampf gegart</button>
+      </div>
+      <div class="q-feedback correct">✓ Richtig! Das Eintauchen in Natronlauge gibt der Brezel ihre charakteristische glänzende Kruste.</div>
+      <div class="q-feedback wrong">✗ Leider falsch. Die Brezel wird vor dem Backen in <strong>Natronlauge</strong> getaucht — das macht sie besonders!</div>
+    </div>
+
+    <div class="quiz-score">
+      <div><span class="score-num" id="mc-score">0 / 6</span><div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem">Punkte (Multiple Choice)</div></div>
+      <button class="btn-reset" onclick="resetMC()">↺ Neu starten</button>
+    </div>
+  </div>
+
+  <!-- PANEL 2: Lückentext -->
+  <div class="quiz-panel" id="panel-fill">
+
+    <div class="fill-q">
+      <p class="q-num">Übung 01 / 05</p>
+      <p class="q-text">Die Currywurst wurde im Jahr <span style="color:var(--gold)">______</span> von Herta Heuwer in Berlin erfunden.</p>
+      <div class="fill-input-wrap">
+        <input class="fill-input" type="text" placeholder="Jahr eingeben..." data-answer="1949" id="fill1">
+        <button class="btn-check" onclick="checkFill('fill1')">Prüfen</button>
+      </div>
+      <div class="q-feedback" id="fill1-fb"></div>
+    </div>
+
+    <div class="fill-q">
+      <p class="q-num">Übung 02 / 05</p>
+      <p class="q-text">Das Reinheitsgebot legt fest, dass Bier nur aus Wasser, Malz, Hopfen und <span style="color:var(--gold)">______</span> gebraut werden darf.</p>
+      <div class="fill-input-wrap">
+        <input class="fill-input" type="text" placeholder="Zutat eingeben..." data-answer="hefe" id="fill2">
+        <button class="btn-check" onclick="checkFill('fill2')">Prüfen</button>
+      </div>
+      <div class="q-feedback" id="fill2-fb"></div>
+    </div>
+
+    <div class="fill-q">
+      <p class="q-num">Übung 03 / 05</p>
+      <p class="q-text">Die Schwarzwälder Kirschtorte muss laut Gesetz mit echtem <span style="color:var(--gold)">______</span> getränkt werden.</p>
+      <div class="fill-input-wrap">
+        <input class="fill-input" type="text" placeholder="Zutat eingeben..." data-answer="kirschwasser" id="fill3">
+        <button class="btn-check" onclick="checkFill('fill3')">Prüfen</button>
+      </div>
+      <div class="q-feedback" id="fill3-fb"></div>
+    </div>
+
+    <div class="fill-q">
+      <p class="q-num">Übung 04 / 05</p>
+      <p class="q-text">Deutschland hat über <span style="color:var(--gold)">______</span> Brotsorten und ist damit weltweit führend in der Brotvielfalt.</p>
+      <div class="fill-input-wrap">
+        <input class="fill-input" type="text" placeholder="Zahl eingeben..." data-answer="300" id="fill4">
+        <button class="btn-check" onclick="checkFill('fill4')">Prüfen</button>
+      </div>
+      <div class="q-feedback" id="fill4-fb"></div>
+    </div>
+
+    <div class="fill-q">
+      <p class="q-num">Übung 05 / 05</p>
+      <p class="q-text">Das typische deutsche Abendessen heißt „<span style="color:var(--gold)">______</span>" und wird oft kalt mit Brot und Käse gegessen.</p>
+      <div class="fill-input-wrap">
+        <input class="fill-input" type="text" placeholder="Begriff eingeben..." data-answer="abendbrot" id="fill5">
+        <button class="btn-check" onclick="checkFill('fill5')">Prüfen</button>
+      </div>
+      <div class="q-feedback" id="fill5-fb"></div>
+    </div>
+
+    <div class="quiz-score">
+      <div><span class="score-num" id="fill-score">0 / 5</span><div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem">Punkte (Lückentext)</div></div>
+      <button class="btn-reset" onclick="resetFill()">↺ Neu starten</button>
+    </div>
+  </div>
+
+  <!-- PANEL 3: Zuordnung -->
+  <div class="quiz-panel" id="panel-match">
+    <p style="color:rgba(240,232,216,0.55);font-size:0.88rem;margin-bottom:1.5rem">Klicken Sie zuerst auf ein deutsches Wort (links), dann auf die passende Bedeutung (rechts).</p>
+    <div class="match-grid">
+      <div>
+        <h4>Deutsches Wort</h4>
+        <div class="match-item" id="m-bratwurst" onclick="selectMatch('bratwurst','left')" data-pair="bratwurst">Die Bratwurst</div>
+        <div class="match-item" id="m-sauerbraten" onclick="selectMatch('sauerbraten','left')" data-pair="sauerbraten">Der Sauerbraten</div>
+        <div class="match-item" id="m-abendbrot" onclick="selectMatch('abendbrot','left')" data-pair="abendbrot">Das Abendbrot</div>
+        <div class="match-item" id="m-brezel" onclick="selectMatch('brezel','left')" data-pair="brezel">Die Brezel</div>
+        <div class="match-item" id="m-sauerkraut" onclick="selectMatch('sauerkraut','left')" data-pair="sauerkraut">Das Sauerkraut</div>
+        <div class="match-item" id="m-spaetzle" onclick="selectMatch('spaetzle','left')" data-pair="spaetzle">Die Spätzle</div>
+      </div>
+      <div>
+        <h4>Arti / Bedeutung</h4>
+        <div class="match-item" id="r-sauerkraut" onclick="selectMatch('sauerkraut','right')" data-pair="sauerkraut">Kubis yang difermentasi dengan garam</div>
+        <div class="match-item" id="r-abendbrot" onclick="selectMatch('abendbrot','right')" data-pair="abendbrot">Makan malam dengan roti (dingin)</div>
+        <div class="match-item" id="r-spaetzle" onclick="selectMatch('spaetzle','right')" data-pair="spaetzle">Mie telur khas Schwaben</div>
+        <div class="match-item" id="r-bratwurst" onclick="selectMatch('bratwurst','right')" data-pair="bratwurst">Sosis panggang khas Jerman</div>
+        <div class="match-item" id="r-brezel" onclick="selectMatch('brezel','right')" data-pair="brezel">Roti simpul celup larutan soda</div>
+        <div class="match-item" id="r-sauerbraten" onclick="selectMatch('sauerbraten','right')" data-pair="sauerbraten">Daging sapi marinasi 3–5 hari</div>
+      </div>
+    </div>
+    <div class="match-feedback" id="match-feedback"></div>
+    <div class="quiz-score">
+      <div><span class="score-num" id="match-score">0 / 6</span><div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem">Punkte (Zuordnung)</div></div>
+      <button class="btn-reset" onclick="resetMatch()">↺ Neu starten</button>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ═══ GLOSSAR ═══ -->
+<section id="glossar">
+<div class="sec-inner">
+  <div class="reveal">
+    <p class="sec-label">Wörterbuch · Glosarium</p>
+    <h2 class="sec-title">Deutsches <em>Glossar</em> der Küche</h2>
+  </div>
+  <div class="glossar-search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="glossar-search" id="glossar-input" type="text" placeholder="Suchen / Cari kata..." oninput="filterGlossar()">
+  </div>
+  <div class="glossar-filter">
+    <button class="gfilter active" onclick="filterCat('all',this)">Alle</button>
+    <button class="gfilter" onclick="filterCat('speisen',this)">🍽 Speisen</button>
+    <button class="gfilter" onclick="filterCat('zutaten',this)">🧅 Zutaten</button>
+    <button class="gfilter" onclick="filterCat('kochen',this)">🍳 Kochen</button>
+    <button class="gfilter" onclick="filterCat('kultur',this)">🎪 Kultur</button>
+  </div>
+  <div class="glossar-grid" id="glossar-grid">
+
+    <!-- SPEISEN -->
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Bratwurst</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Sosis panggang / goreng</div><div class="gloss-example">Ich esse gern eine Bratwurst mit Senf. (Saya suka makan bratwurst dengan mustard.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">das Schnitzel</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Daging tipis yang digoreng berlapis tepung roti</div><div class="gloss-example">Das Schnitzel ist knusprig und lecker. (Schnitzel-nya renyah dan enak.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">das Sauerkraut</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Kubis fermentasi (asinan kubis)</div><div class="gloss-example">Sauerkraut ist reich an Probiotika. (Sauerkraut kaya probiotik.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Brezel / Laugenbrezel</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Roti berbentuk simpul celup larutan soda</div><div class="gloss-example">Eine Brezel mit Butter schmeckt wunderbar! (Brezel dengan mentega rasanya luar biasa!)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">der Sauerbraten</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Daging sapi marinasi dalam cuka dan anggur</div><div class="gloss-example">Der Sauerbraten ist ein deutsches Nationalgericht. (Sauerbraten adalah hidangan nasional Jerman.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Currywurst</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Sosis potong dengan saus kari-tomat</div><div class="gloss-example">Currywurst ist das beliebteste Streetfood Berlins. (Currywurst adalah streetfood paling populer di Berlin.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Spätzle</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Mie telur buatan tangan khas Schwaben</div><div class="gloss-example">Käsespätzle ist ein schwäbisches Lieblingsessen. (Käsespätzle adalah makanan favorit orang Schwaben.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Schweinshaxe</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Kaki babi panggang dengan kulit renyah</div><div class="gloss-example">Die Schweinshaxe ist typisch bayerisch. (Schweinshaxe adalah khas Bavaria.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">der Knödel / Kloß</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Bola adonan (kentang/roti) yang dikukus atau direbus</div><div class="gloss-example">Knödel werden oft mit Braten serviert. (Knödel sering disajikan dengan daging panggang.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Torte</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Kue berlapis (tart)</div><div class="gloss-example">Die Schwarzwälder Kirschtorte ist weltberühmt. (Schwarzwälder Kirschtorte terkenal di seluruh dunia.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">der Lebkuchen</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Kue jahe / rempah khas Natal</div><div class="gloss-example">Zu Weihnachten essen Deutsche Lebkuchen. (Saat Natal, orang Jerman makan Lebkuchen.)</div></div>
+    <div class="gloss-card" data-cat="speisen"><div class="gloss-de">die Suppe</div><div class="gloss-cat">🍽 Speisen</div><div class="gloss-id">Sup</div><div class="gloss-example">Im Winter essen wir gern heiße Suppe. (Di musim dingin kami suka makan sup panas.)</div></div>
+
+    <!-- ZUTATEN -->
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">der Senf</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Mustard (saus mustar)</div><div class="gloss-example">Bratwurst mit Senf ist ein Klassiker. (Bratwurst dengan mustar adalah hidangan klasik.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">der Essig</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Cuka</div><div class="gloss-example">Für Sauerbraten braucht man viel Essig. (Untuk sauerbraten butuh banyak cuka.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">das Schmalz</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Lemak babi / lemak unggas untuk memasak</div><div class="gloss-example">Früher hat man mit Schmalz gekocht. (Dulu orang memasak dengan schmalz.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">der Kümmel</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Biji jintan (caraway seeds)</div><div class="gloss-example">Kümmel wird oft in Brot und Sauerkraut verwendet. (Jintan sering digunakan dalam roti dan sauerkraut.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">der Majoran</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Marjoram (herb khas Jerman)</div><div class="gloss-example">Bratwurst wird mit Majoran gewürzt. (Bratwurst dibumbui dengan marjoram.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">die Sahne / Schlagsahne</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Krim kocok (whipped cream)</div><div class="gloss-example">Die Torte hat viel Schlagsahne. (Kue itu banyak krim kocok.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">der Aufschnitt</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Daging dan keju irisan tipis (untuk roti)</div><div class="gloss-example">Zum Abendbrot gibt es Aufschnitt und Käse. (Untuk abendbrot ada aufschnitt dan keju.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">das Kirschwasser</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Minuman keras dari buah ceri (cherry brandy)</div><div class="gloss-example">Kirschwasser gehört zur Schwarzwälder Kirschtorte. (Kirschwasser adalah bagian dari Schwarzwälder Kirschtorte.)</div></div>
+    <div class="gloss-card" data-cat="zutaten"><div class="gloss-de">die Natronlauge</div><div class="gloss-cat">🧅 Zutaten</div><div class="gloss-id">Larutan soda (untuk membuat brezel)</div><div class="gloss-example">Brezel wird in Natronlauge getaucht. (Brezel dicelup dalam larutan soda.)</div></div>
+
+    <!-- KOCHEN -->
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">braten</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Menggoreng / memanggang (dalam minyak)</div><div class="gloss-example">Ich brate das Schnitzel in der Pfanne. (Saya menggoreng schnitzel di wajan.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">kochen</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Memasak / merebus</div><div class="gloss-example">Wir kochen heute Suppe. (Hari ini kami memasak sup.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">marinieren</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Merendam (dalam bumbu marinade)</div><div class="gloss-example">Das Fleisch muss 3 Tage mariniert werden. (Daging harus direndam selama 3 hari.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">fermentieren</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Memfermentasi</div><div class="gloss-example">Kohl wird fermentiert, um Sauerkraut herzustellen. (Kubis difermentasi untuk membuat sauerkraut.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">würzen</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Memberi bumbu / memberi rempah</div><div class="gloss-example">Die Wurst wird mit Majoran gewürzt. (Sosis dibumbui dengan marjoram.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">panieren</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Melapisi dengan tepung roti (coating)</div><div class="gloss-example">Das Fleisch wird paniert und dann gebraten. (Dagingnya dilapisi tepung roti lalu digoreng.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">die Pfanne</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Wajan / penggorengan</div><div class="gloss-example">Ich brate die Bratwurst in der Pfanne. (Saya menggoreng bratwurst di wajan.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">der Braten</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Daging panggang / hasil memanggang</div><div class="gloss-example">Sonntags gibt es oft Braten. (Di hari Minggu sering ada daging panggang.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">die Beilage</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Hidangan pendamping / lauk tambahan</div><div class="gloss-example">Als Beilage gibt es Kartoffeln. (Sebagai pendamping ada kentang.)</div></div>
+    <div class="gloss-card" data-cat="kochen"><div class="gloss-de">die Soße / Sauce</div><div class="gloss-cat">🍳 Kochen</div><div class="gloss-id">Saus / kuah</div><div class="gloss-example">Der Sauerbraten hat eine süß-saure Soße. (Sauerbraten memiliki saus manis-asam.)</div></div>
+
+    <!-- KULTUR -->
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">das Reinheitsgebot</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Hukum kemurnian bir Jerman (1516)</div><div class="gloss-example">Das Reinheitsgebot ist seit 1516 gültig. (Reinheitsgebot berlaku sejak 1516.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">das Oktoberfest</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Festival bir terbesar di dunia, München</div><div class="gloss-example">Das Oktoberfest findet in München statt. (Oktoberfest diadakan di München.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">das Abendbrot</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Makan malam dingin dengan roti</div><div class="gloss-example">Wir essen um 18 Uhr Abendbrot. (Kami makan abendbrot pukul 18.00.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">das Mittagessen</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Makan siang (makanan utama terbesar)</div><div class="gloss-example">Das Mittagessen ist in Deutschland die Hauptmahlzeit. (Makan siang adalah makanan utama di Jerman.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">der Wochenmarkt</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Pasar mingguan</div><div class="gloss-example">Auf dem Wochenmarkt kauft man frisches Gemüse. (Di pasar mingguan orang membeli sayur segar.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">die Brauerrei</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Pabrik bir / tempat pembuatan bir</div><div class="gloss-example">Die Brauerei Weihenstephan ist die älteste der Welt. (Pabrik bir Weihenstephan adalah yang tertua di dunia.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">die Gemütlichkeit</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Suasana hangat/nyaman, keakraban (kata khas Jerman)</div><div class="gloss-example">Im Biergarten herrscht Gemütlichkeit. (Di biergarten ada suasana gemütlichkeit.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">das Bundesland</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Negara bagian (Jerman punya 16)</div><div class="gloss-example">Deutschland hat 16 Bundesländer. (Jerman memiliki 16 negara bagian.)</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">Guten Appetit!</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Selamat makan! (ucapan sebelum makan)</div><div class="gloss-example">Bevor man isst, sagt man: „Guten Appetit!" (Sebelum makan, orang berkata: „Guten Appetit!")</div></div>
+    <div class="gloss-card" data-cat="kultur"><div class="gloss-de">Prost!</div><div class="gloss-cat">🎪 Kultur</div><div class="gloss-id">Bersulang! / Cheers! (saat minum)</div><div class="gloss-example">Alle heben das Glas und sagen: „Prost!" (Semua mengangkat gelas dan berkata: „Prost!")</div></div>
+
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="flag">🇩🇪</span>
+  <p>Guten Appetit! &nbsp;·&nbsp; Deutsche Küche — Lernmaterial</p>
+  <p style="margin-top:0.5rem">
+    Alle Fotos: <a href="https://commons.wikimedia.org/" target="_blank">Wikimedia Commons</a> (CC BY-SA / Public Domain) &nbsp;·&nbsp;
+    Inhalt für Bildungszwecke
+  </p>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*70);
+    }
+  });
+},{threshold:0.08}).observe || reveals.forEach(el=>{
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){el.classList.add('visible');}
+  },{threshold:0.08}).observe(el);
+});
+reveals.forEach(el=>{
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){el.classList.add('visible');}
+  },{threshold:0.08}).observe(el);
+});
+
+// ── QUIZ TABS ──
+function showPanel(id){
+  document.querySelectorAll('.quiz-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.quiz-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── MULTIPLE CHOICE ──
+let mcScore=0, mcAnswered=new Set();
+function checkMC(btn, result){
+  const q = btn.closest('.mc-question');
+  if(q.dataset.answered) return;
+  q.dataset.answered='1';
+  const opts = q.querySelectorAll('.mc-opt');
+  opts.forEach(o=>{o.disabled=true});
+  const fbOk=q.querySelector('.q-feedback.correct');
+  const fbBad=q.querySelector('.q-feedback.wrong');
+  btn.classList.add(result);
+  if(result==='correct'){
+    mcScore++;
+    fbOk.classList.add('show');
+  } else {
+    fbBad.classList.add('show');
+    // highlight correct
+    opts.forEach(o=>{if(o.getAttribute('onclick').includes("'correct'"))o.classList.add('correct');});
+  }
+  document.getElementById('mc-score').textContent = mcScore+' / 6';
+}
+function resetMC(){
+  mcScore=0;
+  document.querySelectorAll('#panel-mc .mc-question').forEach(q=>{
+    delete q.dataset.answered;
+    q.querySelectorAll('.mc-opt').forEach(o=>{o.disabled=false;o.classList.remove('correct','wrong');});
+    q.querySelectorAll('.q-feedback').forEach(f=>f.classList.remove('show'));
+  });
+  document.getElementById('mc-score').textContent='0 / 6';
+}
+
+// ── FILL IN THE BLANK ──
+let fillScore=0;
+const fillAnswered={};
+function checkFill(id){
+  if(fillAnswered[id]) return;
+  const input=document.getElementById(id);
+  const fb=document.getElementById(id+'-fb');
+  const ans=input.dataset.answer.toLowerCase().trim();
+  const val=input.value.toLowerCase().trim();
+  fillAnswered[id]=true;
+  input.disabled=true;
+  if(val===ans){
+    input.classList.add('correct');
+    fb.textContent='✓ Richtig! Die Antwort ist: '+input.dataset.answer;
+    fb.className='q-feedback correct show';
+    fillScore++;
+  } else {
+    input.classList.add('wrong');
+    fb.textContent='✗ Leider falsch. Die richtige Antwort ist: '+input.dataset.answer;
+    fb.className='q-feedback wrong show';
+  }
+  document.getElementById('fill-score').textContent=fillScore+' / 5';
+}
+function resetFill(){
+  fillScore=0;
+  ['fill1','fill2','fill3','fill4','fill5'].forEach(id=>{
+    delete fillAnswered[id];
+    const inp=document.getElementById(id);
+    inp.value=''; inp.disabled=false;
+    inp.classList.remove('correct','wrong');
+    const fb=document.getElementById(id+'-fb');
+    fb.className='q-feedback'; fb.textContent='';
+  });
+  document.getElementById('fill-score').textContent='0 / 5';
+}
+
+// ── MATCHING ──
+let matchScore=0, selectedLeft=null, selectedRight=null;
+function selectMatch(pair, side){
+  const id=(side==='left'?'m-':'r-')+pair;
+  const el=document.getElementById(id);
+  if(el.classList.contains('matched-ok')||el.classList.contains('matched-err')) return;
+
+  if(side==='left'){
+    if(selectedLeft){document.getElementById('m-'+selectedLeft).classList.remove('selected');}
+    selectedLeft=pair;
+    el.classList.add('selected');
+  } else {
+    if(selectedRight){document.getElementById('r-'+selectedRight).classList.remove('selected');}
+    selectedRight=pair;
+    el.classList.add('selected');
+  }
+
+  if(selectedLeft && selectedRight){
+    const lEl=document.getElementById('m-'+selectedLeft);
+    const rEl=document.getElementById('r-'+selectedRight);
+    if(selectedLeft===selectedRight){
+      lEl.classList.remove('selected'); rEl.classList.remove('selected');
+      lEl.classList.add('matched-ok'); rEl.classList.add('matched-ok');
+      matchScore++;
+      document.getElementById('match-score').textContent=matchScore+' / 6';
+      document.getElementById('match-feedback').textContent='✓ Richtig! Weiter so!';
+      document.getElementById('match-feedback').style.color='#6dd68a';
+    } else {
+      lEl.classList.add('matched-err'); rEl.classList.add('matched-err');
+      setTimeout(()=>{
+        lEl.classList.remove('matched-err','selected');
+        rEl.classList.remove('matched-err','selected');
+      },900);
+      document.getElementById('match-feedback').textContent='✗ Nicht korrekt. Versuchen Sie es nochmal!';
+      document.getElementById('match-feedback').style.color='#e07070';
+    }
+    selectedLeft=null; selectedRight=null;
+  }
+}
+function resetMatch(){
+  matchScore=0; selectedLeft=null; selectedRight=null;
+  document.querySelectorAll('.match-item').forEach(el=>{
+    el.classList.remove('selected','matched-ok','matched-err');
+  });
+  document.getElementById('match-score').textContent='0 / 6';
+  document.getElementById('match-feedback').textContent='';
+}
+
+// ── GLOSSAR FILTER ──
+let activeCat='all';
+function filterCat(cat, btn){
+  activeCat=cat;
+  document.querySelectorAll('.gfilter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterGlossar();
+}
+function filterGlossar(){
+  const q=document.getElementById('glossar-input').value.toLowerCase();
+  document.querySelectorAll('.gloss-card').forEach(card=>{
+    const catMatch = activeCat==='all' || card.dataset.cat===activeCat;
+    const textMatch = card.textContent.toLowerCase().includes(q);
+    card.classList.toggle('hidden', !(catMatch && textMatch));
+  });
+}
+</script>
+</body>
+</html>
